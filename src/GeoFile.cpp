@@ -156,7 +156,8 @@ GeoFile::determineFormat(const std::string fileName, int *gf_format)
 	*gf_format = SSC_FORMAT_HDF4;
 
     // Try to open as swath file with the HDF-EOS library.
-    swathfileid = SWopen(fileName.c_str(), DFACC_RDONLY);
+    // jhrg 10/21/20 swathfileid = SWopen(fileName.c_str(), DFACC_RDONLY);
+    swathfileid = SWopen(const_cast<char*>(fileName.c_str()), DFACC_RDONLY);
     if (swathfileid != -1)
     {
 	if (gf_format)
